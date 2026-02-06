@@ -56,8 +56,10 @@
         overflow: hidden;
 
         @media (max-width: 768px) {
-            font-size: 2.5rem;
-            flex-direction: column;
+            font-size: 2rem;
+            /* Reduced to fit on one line */
+            flex-direction: row;
+            /* Force row */
             gap: 0.5rem;
             align-items: center;
         }
