@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@300;400;500;700&display=swap');
+
+/* ===============================
+   GLOBAL RESET & BASE STYLES
+   =============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #0a0a0a;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
+:focus-visible {
+  outline: 2px solid #6A8CFF;
+  outline-offset: 2px;
+}
+
+/* ===============================
+   SMOOTH SCROLLING
+   =============================== */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===============================
+   SELECTION
+   =============================== */
+::selection {
+  background: #6A8CFF;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: #6A8CFF;
+  color: #fff;
+}
+
+/* ===============================
+   LINKS
+   =============================== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===============================
+   BUTTONS
+   =============================== */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ===============================
+   IMAGES
+   =============================== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===============================
+   UTILITIES
+   =============================== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

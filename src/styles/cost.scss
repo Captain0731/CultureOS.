@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;700&display=swap');
+
+/* ============================================
+   COST SECTION CONTAINER
+   ============================================ */
+.cost-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 40px;
+  position: relative;
+
+  @media (max-width: 1024px) {
+    margin: 80px auto;
+    padding: 0 30px;
+  }
+
+  @media (max-width: 768px) {
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+}
+
+/* ============================================
+   LABEL SECTION
+   ============================================ */
+/* ============================================
+   LABEL SECTION
+   ============================================ */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #000000 0%, #000000 100%);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .label-icon {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    display: flex;
+    margin: 0 auto 30px auto;
+    width: fit-content;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 24px;
+    font-size: 0.7rem;
+    margin-bottom: 25px;
+  }
+}
+
+/* ============================================
+   HEADING SECTION
+   ============================================ */
+.cost-heading {
+  font-family: "Marcellus", serif;
+  font-size: 5.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #0a0a0a;
+  margin-bottom: 60px;
+  letter-spacing: -2px;
+  text-align: left;
+
+  .heading-highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 4rem;
+    letter-spacing: -1px;
+  }
+
+  @media (max-width: 900px) {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+    letter-spacing: -0.5px;
+    margin-bottom: 40px;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
+}
+
+/* ============================================
+   COST GRID - Problems List
+   ============================================ */
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px 50px;
+  margin-bottom: 70px;
+  max-width: 900px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+}
+
+.cost-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  width: 550px;
+  background: #fafafa;
+  border-radius: 16px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #000000 0%, #000000 100%);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateX(8px);
+
+    &::before {
+      transform: scaleY(1);
+    }
+
+    .cost-bullet {
+      transform: scale(1.2);
+      background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    gap: 15px;
+    width: 100%;
+  }
+}
+
+.cost-bullet {
+  min-width: 12px;
+  width: 12px;
+  height: 12px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    min-width: 10px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.cost-text {
+  font-size: 1.35rem;
+  color: #333;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+
+  .emphasis {
+    font-weight: 600;
+    color: #000;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.15rem;
+  }
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+.divider-wrapper {
+  margin: 70px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    margin: 50px 0;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      #e0e0e0 20%,
+      #d0d0d0 50%,
+      #e0e0e0 80%,
+      transparent 100%);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #000000;
+    border-radius: 50%;
+  }
+}
+
+/* ============================================
+   FINAL SECTION - The Dangerous Phrase
+   ============================================ */
+.final-section {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(79, 172, 254, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+    border-radius: 20px;
+  }
+}
+
+.final-intro {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 30px;
+  font-style: italic;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+  }
+}
+
+.final-quote-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 800px;
+  z-index: 1;
+}
+
+.quote-decoration {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fecaca 0%, #fee2e2 100%);
+  opacity: 0.4;
+
+  &.left {
+    top: -20px;
+    left: -30px;
+  }
+
+  &.right {
+    bottom: -20px;
+    right: -30px;
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+
+    &.left {
+      top: -10px;
+      left: -15px;
+    }
+
+    &.right {
+      bottom: -10px;
+      right: -15px;
+    }
+  }
+}
+
+.final-quote {
+  font-family: "Marcellus", serif;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #000000;
+  line-height: 1.3;
+  letter-spacing: -1px;
+  position: relative;
+  padding: 0 40px;
+  margin: 0;
+
+  &::before,
+  &::after {
+    content: '"';
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    line-height: 0;
+    color: rgba(68, 68, 68, 0.2);
+    position: absolute;
+    user-select: none;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    bottom: -10px;
+    right: 0;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 2.4rem;
+    padding: 0 30px;
+
+    &::before,
+    &::after {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.9rem;
+    padding: 0 20px;
+    letter-spacing: -0.5px;
+
+    &::before,
+    &::after {
+      font-size: 2.5rem;
+    }
+  }
+}

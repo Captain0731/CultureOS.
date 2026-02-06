@@ -1,0 +1,345 @@
+/* ===============================
+   NAVBAR WRAPPER
+   =============================== */
+/* ===============================
+   NAVBAR WRAPPER
+   =============================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 24px 0;
+  background: transparent;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid transparent;
+}
+
+/* ================================
+   SCROLL STATE — FIXED VERSION
+   ================================ */
+
+/* Support both class and data-attribute for reliability */
+.navbar.scrolled,
+.navbar[data-scrolled="true"] {
+  padding: 12px 0 !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  
+
+}
+
+/* Transition for body padding - REMOVED to prevent layout jumps */
+body {
+  transition: padding-top 0.4s ease-in-out;
+}
+
+/* Add spacing below navbar so it doesn't overlap content - DISABLED */
+body.with-nav-space {
+  padding-top: 0 !important;
+}
+
+/* ===============================
+   CONTAINER
+   =============================== */
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* ===============================
+   LOGO
+   =============================== */
+.navbar-logo img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.scrolled .navbar-logo img,
+.navbar[data-scrolled="true"] .navbar-logo img {
+  height: 50px !important;
+}
+
+/* ===============================
+   MENU
+   =============================== */
+.navbar-menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 50px;
+  padding: 8px 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar-link {
+  padding: 10px 20px;
+  color: #000000;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  
+  &:hover {
+    letter-spacing: 4px;
+    color: #666;
+  }
+}
+
+/* SCROLLED MENU — MINIMAL */
+.navbar.scrolled .navbar-menu,
+.navbar[data-scrolled="true"] .navbar-menu {
+  background: transparent !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  gap: 28px !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.navbar.scrolled .navbar-link,
+.navbar[data-scrolled="true"] .navbar-link {
+  color: #000 !important;
+  padding: 0 !important;
+}
+
+.navbar.scrolled .navbar-link:hover,
+.navbar[data-scrolled="true"] .navbar-link:hover {
+  color: #666 !important;
+}
+
+/* ===============================
+   HAMBURGER MENU BUTTON
+   =============================== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    transform-origin: center;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: translateY(9.5px) rotate(45deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(-9.5px) rotate(-45deg);
+    }
+  }
+}
+
+/* ===============================
+   NAVBAR RIGHT WRAPPER
+   =============================== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ===============================
+   SOCIAL ICONS
+   =============================== */
+.navbar-social {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  color: #000;
+  transition: 0.8s ease-in-out;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: all 0.8s ease-in-out;
+  }
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.7;
+}
+
+/* SCROLLED ICON COLORS */
+.navbar.scrolled .social-link svg,
+.navbar[data-scrolled="true"] .social-link svg {
+  fill: #000 !important;
+  stroke: #000 !important;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 1024px) {
+  .navbar-container {
+    padding: 0 30px;
+    gap: 15px;
+  }
+
+  .navbar-right {
+    gap: 30px;
+  }
+
+  .navbar-menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 0;
+    padding: 6px 12px;
+  }
+
+  .navbar-link {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 20px;
+    justify-content: space-between;
+  }
+
+  .navbar-logo img {
+    height: 55px;
+  }
+
+  .navbar.scrolled .navbar-logo img,
+  .navbar[data-scrolled="true"] .navbar-logo img {
+    height: 42px !important;
+  }
+
+  /* Show hamburger menu on mobile */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Reset absolute positioning for mobile */
+  .navbar-menu {
+    position: static;
+    left: auto;
+    transform: none;
+  }
+
+  /* Hide navbar-right by default on mobile */
+  .navbar-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 100px 30px 40px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  /* Show mobile menu when open */
+  .navbar-right.mobile-open {
+    right: 0;
+  }
+
+  /* Mobile menu styles */
+  .navbar-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .navbar-link {
+    width: 100%;
+    padding: 16px 0 !important;
+    font-size: 1.1rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    color: #000 !important;
+
+    &:hover {
+      color: #666 !important;
+      padding-left: 8px !important;
+    }
+  }
+
+  /* Social icons in mobile menu */
+  .navbar-social {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    width: 100%;
+    justify-content: flex-start;
+    gap: 24px;
+
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* Scrolled state adjustments for mobile */
+  .navbar.scrolled .navbar-menu,
+  .navbar[data-scrolled="true"] .navbar-menu {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+
+  .navbar.scrolled .navbar-link,
+  .navbar[data-scrolled="true"] .navbar-link {
+    padding: 16px 0 !important;
+  }
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+}
