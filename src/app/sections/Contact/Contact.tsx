@@ -34,13 +34,19 @@ export default function ContactPage() {
                 {/* RIGHT SIDE FORM */}
                 <div className="contact-form">
                     <label>Name</label>
-                    <input type="text" placeholder="John Doe" />
+                    <input type="text" placeholder="Enter Your Name" />
 
-                    <label>Subject</label>
+                    <label>Email ID</label>
                     <input type="email" placeholder="Your@email.com" />
 
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter Your Phone Number" />
+
+                    <label>Subject</label>
+                    <input type="text" placeholder="Enter Your Quiry Releted Subject Name"/>
+
                     <label>Message</label>
-                    <textarea placeholder="Tell us about your project"></textarea>
+                    <textarea placeholder="Tell us about your Quiry"></textarea>
 
                     <button className="contact-btn">Send Message</button>
                 </div>
