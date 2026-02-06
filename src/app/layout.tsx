@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Culture OS.",
   description: "Premium website ",
   icons: {
-    icon: "/assets/images/ikj.png",
+    icon: "/assets/images/finallogo1.png",
   },
 };
 

@@ -48,7 +48,7 @@ export default function Navbar() {
           e.preventDefault();
           scrollToSection("home");
         }}>
-          <img src="/assets/images/logo.png" alt="Culture OS Logo" />
+          <img src="/assets/images/finallogo.png" alt="Culture OS Logo" />
         </a>
 
         {/* Hamburger Menu Button */}
@@ -65,7 +65,7 @@ export default function Navbar() {
         {/* Navigation Menu & Social Icons Wrapper */}
         <div className={`navbar-right ${isMobileMenuOpen ? "mobile-open" : ""}`}>
           {/* Close button for mobile */}
-          
+
 
           {/* Navigation Menu */}
           <div className="navbar-menu">
