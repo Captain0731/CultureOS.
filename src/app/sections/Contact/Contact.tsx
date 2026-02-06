@@ -1,7 +1,55 @@
 "use client";
+import { useState } from "react";
 import "../../../styles/contact.scss";
 
 export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+    });
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [statusMessage, setStatusMessage] = useState("");
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus("loading");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setStatus("success");
+                setStatusMessage("Message sent successfully!");
+                setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+            } else {
+                setStatus("error");
+                setStatusMessage(data.error || "Something went wrong");
+            }
+        } catch (error) {
+            setStatus("error");
+            setStatusMessage("Failed to send message. Please try again.");
+        }
+
+        // Reset status after 5 seconds
+        setTimeout(() => {
+            setStatus("idle");
+            setStatusMessage("");
+        }, 5000);
+    };
+
     return (
         <section className="contact-wrapper" id="contact">
             <div className="contact-container">
@@ -32,24 +80,66 @@ export default function ContactPage() {
                 </div>
 
                 {/* RIGHT SIDE FORM */}
-                <div className="contact-form">
+                <form className="contact-form" onSubmit={handleSubmit}>
                     <label>Name</label>
-                    <input type="text" placeholder="Enter Your Name" />
+                    <input 
+                        type="text" 
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Enter Your Name" 
+                        required
+                    />
 
                     <label>Email ID</label>
-                    <input type="email" placeholder="Your@email.com" />
+                    <input 
+                        type="email" 
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Your@email.com" 
+                        required
+                    />
 
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="Enter Your Phone Number" />
+                    <input 
+                        type="tel" 
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Enter Your Phone Number" 
+                    />
 
                     <label>Subject</label>
-                    <input type="text" placeholder="Enter Your Quiry Releted Subject Name"/>
+                    <input 
+                        type="text" 
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        placeholder="Enter Your Quiry Releted Subject Name"
+                    />
 
                     <label>Message</label>
-                    <textarea placeholder="Tell us about your Quiry"></textarea>
+                    <textarea 
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your Quiry"
+                        required
+                    ></textarea>
 
-                    <button className="contact-btn">Send Message</button>
-                </div>
+                    {statusMessage && (
+                        <p className={`form-status ${status}`}>{statusMessage}</p>
+                    )}
+
+                    <button 
+                        className="contact-btn" 
+                        type="submit"
+                        disabled={status === "loading"}
+                    >
+                        {status === "loading" ? "Sending..." : "Send Message"}
+                    </button>
+                </form>
             </div>
         </section>
     );
