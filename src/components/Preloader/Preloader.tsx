@@ -15,11 +15,11 @@ const Preloader = () => {
 
         const timerExit = setTimeout(() => {
             setExit(true);
-        }, 2200);
+        }, 2500);
 
         const timerRemove = setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 6000);
 
         return () => {
             clearTimeout(timerExit);
@@ -31,8 +31,11 @@ const Preloader = () => {
 
     return (
         <div className={`${styles.preloader} ${exit ? styles.exit : ''}`}>
-            <div className={`${styles.curtain} ${styles['curtain-top']}`}></div>
-            <div className={`${styles.curtain} ${styles['curtain-bottom']}`}></div>
+            <div className={styles['slat-container']}>
+                {[...Array(10)].map((_, i) => (
+                    <div key={i} className={styles['slat']}></div>
+                ))}
+            </div>
 
             <div className={styles['text-container']}>
                 <div className={styles.word}>
@@ -42,7 +45,7 @@ const Preloader = () => {
                     <span>OS.</span>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
