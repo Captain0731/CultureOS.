@@ -54,6 +54,11 @@
         border-radius: 50%;
         animation: rotateIris 10s linear infinite;
     }
+
+    @media (max-width: 768px) {
+        width: 35vw;
+        height: 35vw;
+    }
 }
 
 @keyframes irisPulse {
@@ -106,6 +111,13 @@
     --tx: calc(sin(var(--index) * 45deg) * 300px);
     --ty: calc(cos(var(--index) * 45deg) * 300px);
     --rot: calc(var(--index) * 45deg);
+
+    @media (max-width: 768px) {
+        width: 60px;
+        height: 60px;
+        --tx: calc(sin(var(--index) * 45deg) * 150px);
+        --ty: calc(cos(var(--index) * 45deg) * 150px);
+    }
 }
 
 @keyframes shardFloat {
@@ -130,10 +142,15 @@
     font-family: 'Marcellus', serif;
     font-size: clamp(3rem, 10vw, 6rem);
     letter-spacing: 0.5rem;
-    // text-transform: uppercase;
     display: flex;
     gap: 0.2rem;
     overflow: hidden;
+
+    @media (max-width: 768px) {
+        font-size: clamp(2rem, 12vw, 4rem);
+        letter-spacing: 0.2rem;
+        justify-content: center;
+    }
 }
 
 .letter {
@@ -156,13 +173,19 @@
     margin-top: 1rem;
     opacity: 0;
     text-transform: uppercase;
-    animation: fadeIn 1s ease forwards 2s;
     background: linear-gradient(90deg, transparent, #fff, transparent);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: fadeIn 1s ease forwards 2s, shine 3s linear infinite 3s;
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+        letter-spacing: 0.3rem;
+        margin-top: 0.5rem;
+        padding: 0 1rem;
+    }
 }
 
 @keyframes fadeIn {
