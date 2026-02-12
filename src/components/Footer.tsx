@@ -1,5 +1,7 @@
 "use client";
 
+import { FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
+import { LuArrowRight } from "react-icons/lu";
 import "../styles/footer.scss";
 
 export default function Footer() {
@@ -13,15 +15,15 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-container">
         {/* Footer Top - CTA Section */}
-        <div className="footer-cta">
+        {/* <div className="footer-cta">
           <h2 className="cta-title">Transform your <span>Workplace</span></h2>
           <button className="cta-button" onClick={() => scrollToSection('contact')}>
             Get Started
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14m-7-7l7 7-7 7" />
+              <LuArrowRight />
             </svg>
           </button>
-        </div>
+        </div> */}
 
         <div className="footer-grid">
           {/* Column 1 - Brand */}
@@ -33,9 +35,15 @@ export default function Footer() {
               At Culture OS, we don&apos;t just consult; we architect environments where human potential flourishes.
             </p>
             <div className="social-wrap">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">X</a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon">IG</a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">LI</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Twitter">
+                <FaXTwitter size={18} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
+                <FaInstagram size={18} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
+                <FaLinkedinIn size={18} />
+              </a>
             </div>
           </div>
 

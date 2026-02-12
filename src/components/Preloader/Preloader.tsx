@@ -59,7 +59,7 @@ const Preloader = () => {
                         OS.
                     </span>
                 </div>
-                <div className={styles.subtitle}>INNOVATION • CULTURE • DESIGN</div>
+                <div className={styles.subtitle}>REAL VISIBILITY • CULTURE HEALTH • TEAM INSIGHTS</div>
             </div>
         </div >
     );

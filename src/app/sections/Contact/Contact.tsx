@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { FaLinkedinIn, FaXTwitter, FaInstagram, FaFacebookF } from "react-icons/fa6";
 import "../../../styles/contact.scss";
 
 export default function ContactPage() {
@@ -70,10 +71,10 @@ export default function ContactPage() {
                     {/* Social Icons */}
                     <div className="social-bar">
                         <h3>Follow Us</h3>
-                        <a href="#" aria-label="LinkedIn">in</a>
-                        <a href="#" aria-label="Twitter">𝕏</a>
-                        <a href="#" aria-label="Instagram">◎</a>
-                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="LinkedIn"><FaLinkedinIn size={20} /></a>
+                        <a href="#" aria-label="Twitter"><FaXTwitter size={20} /></a>
+                        <a href="#" aria-label="Instagram"><FaInstagram size={20} /></a>
+                        <a href="#" aria-label="Facebook"><FaFacebookF size={20} /></a>
 
                         {/* <div className="follow-text">Follow us</div> */}
                     </div>
@@ -82,37 +83,37 @@ export default function ContactPage() {
                 {/* RIGHT SIDE FORM */}
                 <form className="contact-form" onSubmit={handleSubmit}>
                     <label>Name</label>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Enter Your Name" 
+                        placeholder="Enter Your Name"
                         required
                     />
 
                     <label>Email ID</label>
-                    <input 
-                        type="email" 
+                    <input
+                        type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Your@email.com" 
+                        placeholder="Your@email.com"
                         required
                     />
 
                     <label>Phone Number</label>
-                    <input 
-                        type="tel" 
+                    <input
+                        type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="Enter Your Phone Number" 
+                        placeholder="Enter Your Phone Number"
                     />
 
                     <label>Subject</label>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
@@ -120,7 +121,7 @@ export default function ContactPage() {
                     />
 
                     <label>Message</label>
-                    <textarea 
+                    <textarea
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
@@ -132,8 +133,8 @@ export default function ContactPage() {
                         <p className={`form-status ${status}`}>{statusMessage}</p>
                     )}
 
-                    <button 
-                        className="contact-btn" 
+                    <button
+                        className="contact-btn"
                         type="submit"
                         disabled={status === "loading"}
                     >

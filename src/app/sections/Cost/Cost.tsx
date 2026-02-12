@@ -1,3 +1,4 @@
+import { LuTriangle } from "react-icons/lu";
 import "../../../styles/cost.scss";
 
 export default function Cost() {
@@ -19,21 +20,21 @@ export default function Cost() {
       <div className="cost-grid">
 
         <div className="cost-item">
-          <div className="cost-bullet"></div>
+          <LuTriangle className="cost-bullet" size={18} />
           <p className="cost-text">
             High performers <span className="emphasis">quietly disconnect</span>
           </p>
         </div>
 
         <div className="cost-item">
-          <div className="cost-bullet"></div>
+          <LuTriangle className="cost-bullet" size={18} />
           <p className="cost-text">
             Managers <span className="emphasis">burn out silently</span>
           </p>
         </div>
 
         <div className="cost-item">
-          <div className="cost-bullet"></div>
+          <LuTriangle className="cost-bullet" size={18} />
           <p className="cost-text">
             Candidates sense <span className="emphasis">"something's off"</span>
           </p>

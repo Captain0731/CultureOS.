@@ -1,3 +1,4 @@
+import { LuBadgeCheck, LuArrowRight } from "react-icons/lu";
 import "../../../styles/solution.scss";
 
 export default function Solution() {
@@ -22,22 +23,22 @@ export default function Solution() {
 
           <ul className="solution-list">
             <li className="solution-item">
-              <span className="item-marker">●</span>
+              <LuBadgeCheck className="item-marker" size={18} />
               <span className="item-text">Hear what's usually left unsaid</span>
             </li>
             <li className="solution-item">
-              <span className="item-marker">●</span>
+              <LuBadgeCheck className="item-marker" size={18} />
               <span className="item-text">Spot cultural fractures early</span>
             </li>
             <li className="solution-item">
-              <span className="item-marker">●</span>
+              <LuBadgeCheck className="item-marker" size={18} />
               <span className="item-text">Turn gut feel into actionable insight</span>
             </li>
           </ul>
 
           <button className="solution-btn">
             Build culture before it breaks
-            <span className="btn-arrow">→</span>
+            <LuArrowRight className="btn-arrow" />
           </button>
         </div>
       </div>
