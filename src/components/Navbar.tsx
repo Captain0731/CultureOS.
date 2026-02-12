@@ -48,7 +48,7 @@ export default function Navbar() {
           e.preventDefault();
           scrollToSection("home");
         }}>
-          <img src="/assets/images/finallogo.png" alt="Culture OS Logo" />
+          <img src="/assets/images/logo.png" alt="Culture OS Logo" />
         </a>
 
         {/* Hamburger Menu Button */}

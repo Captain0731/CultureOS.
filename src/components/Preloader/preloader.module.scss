@@ -4,107 +4,179 @@
     left: 0;
     width: 100%;
     height: 100vh;
+    background: #000;
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    pointer-events: none;
-    /* Allows click through after animation if z-index handling fails, but we usually remove component */
+    perspective: 1000px;
 
     &.exit {
-        .slat {
-            transform: rotateX(-90deg);
+        .liquid-iris {
+            transform: scale(20);
             opacity: 0;
-            filter: blur(10px);
+            transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s ease-in 0.7s;
+        }
+
+        .shard {
+            transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot));
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
         .text-container {
-            letter-spacing: 3rem;
             opacity: 0;
+            transform: translateZ(100px) scale(0.8);
             filter: blur(20px);
-            transition: letter-spacing 1.5s ease-in, opacity 1.2s ease-in, filter 1.2s ease-in;
+            transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
         }
-    }
-
-    .slat-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        perspective: 2000px;
-        z-index: 1;
-    }
-
-    .slat {
-        flex: 1;
-        width: 100%;
-        background-color: #0c0c0c;
-        transform-origin: center;
-        transition: transform 1.8s cubic-bezier(0.65, 0, 0.35, 1),
-            opacity 1.5s ease-out,
-            filter 1.5s ease-out;
-        will-change: transform, opacity;
-
-        @for $i from 1 through 10 {
-            &:nth-child(#{$i}) {
-                transition-delay: #{($i - 1) * 0.12}s;
-            }
-        }
-    }
-
-    .text-container {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        gap: 1.5rem;
-        font-family: 'Marcellus', serif;
-        font-size: 4.5rem;
-        letter-spacing: 0.1rem;
-        font-weight: 400;
-        color: #fff;
-        transition: letter-spacing 0.5s ease-out, opacity 0.5s ease-out, filter 0.5s ease-out;
-
-        @media (max-width: 768px) {
-            font-size: 2rem;
-            /* Reduced to fit on one line */
-            flex-direction: row;
-            /* Force row */
-            gap: 0.5rem;
-            align-items: center;
-        }
-    }
-
-    .word {
-        position: relative;
-        display: inline-block;
-        overflow: hidden;
-
-        span {
-            display: inline-block;
-            transform: translateY(100%);
-            animation: revealText 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-        }
-    }
-
-    .word:nth-child(1) span {
-        animation-delay: 0.2s;
-    }
-
-    .word:nth-child(2) span {
-        animation-delay: 0.4s;
     }
 }
 
-@keyframes revealText {
+.liquid-iris {
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 1;
+    transform: scale(0);
+    animation: irisPulse 3s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+    pointer-events: none;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        animation: rotateIris 10s linear infinite;
+    }
+}
+
+@keyframes irisPulse {
     0% {
-        transform: translateY(100%);
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
     }
 
     100% {
-        transform: translateY(0);
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes rotateIris {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.geometric-shards {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.shard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #333, transparent);
+    backdrop-filter: blur(5px);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transform: translate(-50%, -50%) scale(0);
+    animation: shardFloat 4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+
+    // Dynamic positions for each shard using CSS variables set in TSX
+    --tx: calc(sin(var(--index) * 45deg) * 300px);
+    --ty: calc(cos(var(--index) * 45deg) * 300px);
+    --rot: calc(var(--index) * 45deg);
+}
+
+@keyframes shardFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(calc(-50% + var(--tx) * 0.2), calc(-50% + var(--ty) * 0.2)) scale(1) rotate(var(--rot));
+    }
+}
+
+.text-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+}
+
+.title {
+    font-family: 'Marcellus', serif;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 0.5rem;
+    // text-transform: uppercase;
+    display: flex;
+    gap: 0.2rem;
+    overflow: hidden;
+}
+
+.letter {
+    display: inline-block;
+    transform: translateY(110%) rotateX(-90deg);
+    animation: letterReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: calc(var(--char-index) * 0.05s + 0.5s);
+}
+
+@keyframes letterReveal {
+    to {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+.subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    text-transform: uppercase;
+    animation: fadeIn 1s ease forwards 2s;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease forwards 2s, shine 3s linear infinite 3s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 0.5;
+    }
+}
+
+@keyframes shine {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
     }
 }

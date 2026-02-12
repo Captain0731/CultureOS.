@@ -2,84 +2,152 @@
 
 .footer {
   width: 100%;
-  background: #0d0d0d;
-  padding: 60px 0 0;
+  background: #080808;
+  padding: 100px 0 40px;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 60px 0 30px;
+  }
 }
 
-.footer-content {
+.footer-container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-bottom: 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
 
-  .footer-brand img {
-    width: 250px;
-    height: 100px;
-  }
+/* Footer Top - CTA */
+.footer-cta {
+  text-align: center;
+  margin-bottom: 100px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+  }
+
+  .cta-title {
+    font-family: 'Marcellus', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    margin-bottom: 40px;
+    line-height: 1.1;
+
+    span {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .cta-button {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 16px 40px;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+
+    svg {
+      width: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+
+      svg {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+/* Footer Grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
-    align-items: center;
   }
 }
 
-/* Brand Section */
-.footer-brand {
-  max-width: 280px;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
+.footer-col {
+  .col-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 30px;
+    font-weight: 500;
   }
 }
 
-.brand-name {
-  font-family: "Marcellus", serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin: 0 0 12px;
-  color: #fff;
+.brand-col {
+  .brand-logo img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 25px;
+
+    @media (max-width: 768px) {
+      margin: 0 auto 20px;
+      height: 50px;
+    }
+  }
+
+  .footer-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 320px;
+
+    @media (max-width: 900px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }
 
-.brand-tagline {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* Navigation */
-.footer-nav {
+.social-wrap {
   display: flex;
-  gap: 40px;
+  gap: 25px;
 
-  @media (max-width: 768px) {
-    gap: 24px;
-    flex-wrap: wrap;
+  @media (max-width: 900px) {
     justify-content: center;
   }
 
-  span {
-    font-family: "Poppins", sans-serif;
+  .social-icon {
+    font-family: 'Marcellus', serif;
     font-size: 0.9rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    transition: color 0.3s ease;
+    color: #fff;
+    text-decoration: none;
     position: relative;
+    padding-bottom: 4px;
 
     &::after {
       content: '';
       position: absolute;
-      bottom: -4px;
+      bottom: 0;
       left: 0;
       width: 0;
       height: 1px;
@@ -87,82 +155,90 @@
       transition: width 0.3s ease;
     }
 
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+/* Links */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  span {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    width: fit-content;
+    transition: color 0.3s ease;
+
+    @media (max-width: 900px) {
+      margin: 0 auto;
+    }
+
     &:hover {
       color: #fff;
+    }
+  }
+}
 
-      &::after {
-        width: 100%;
+.footer-info {
+  p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+  }
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 20px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bottom-right {
+    display: flex;
+    gap: 30px;
+
+    a {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
       }
     }
   }
 }
 
-/* Social Links */
-.footer-social {
-  display: flex;
-  gap: 20px;
-
-  a {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s ease;
-
-    &:hover {
-      border-color: #fff;
-      color: #fff;
-      transform: translateY(-3px);
-    }
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-}
-
-/* Bottom Bar */
-.footer-bottom {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  p {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0;
-  }
-}
-
-.footer-links {
-  display: flex;
-  gap: 24px;
-
-  a {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #fff;
-    }
-  }
+/* Large Watermark */
+.footer-watermark {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Marcellus', serif;
+  font-size: 15vw;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
 }

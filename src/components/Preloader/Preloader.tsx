@@ -8,18 +8,14 @@ const Preloader = () => {
     const [exit, setExit] = useState(false);
 
     useEffect(() => {
-        // Sequence:
-        // 0s: Start (Text reveals handled by CSS)
-        // 2.0s: Start exit animation (Curtains split)
-        // 2.8s: Remove from DOM
-
+        // Cinematic sequence timing
         const timerExit = setTimeout(() => {
             setExit(true);
-        }, 2500);
+        }, 4000);
 
         const timerRemove = setTimeout(() => {
             setLoading(false);
-        }, 6000);
+        }, 5500);
 
         return () => {
             clearTimeout(timerExit);
@@ -29,21 +25,41 @@ const Preloader = () => {
 
     if (!loading) return null;
 
+    const mainTitle = "Culture".split("");
+
     return (
         <div className={`${styles.preloader} ${exit ? styles.exit : ''}`}>
-            <div className={styles['slat-container']}>
-                {[...Array(10)].map((_, i) => (
-                    <div key={i} className={styles['slat']}></div>
+            <div className={styles['liquid-iris']}></div>
+
+            <div className={styles['geometric-shards']}>
+                {[...Array(12)].map((_, i) => (
+                    <div
+                        key={i}
+                        className={styles.shard}
+                        style={{ '--index': i } as React.CSSProperties}
+                    ></div>
                 ))}
             </div>
 
             <div className={styles['text-container']}>
-                <div className={styles.word}>
-                    <span>CULTURE</span>
+                <div className={styles.title}>
+                    {mainTitle.map((char, i) => (
+                        <span
+                            key={i}
+                            className={styles.letter}
+                            style={{ '--char-index': i } as React.CSSProperties}
+                        >
+                            {char}
+                        </span>
+                    ))}
+                    <span
+                        className={styles.letter}
+                        style={{ '--char-index': mainTitle.length } as React.CSSProperties}
+                    >
+                        OS.
+                    </span>
                 </div>
-                <div className={styles.word}>
-                    <span>OS.</span>
-                </div>
+                <div className={styles.subtitle}>INNOVATION • CULTURE • DESIGN</div>
             </div>
         </div >
     );
