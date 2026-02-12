@@ -1,4 +1,3 @@
-import { LuAperture, LuArrowRight } from "react-icons/lu";
 import "../../../styles/about.scss";
 
 export default function About() {
@@ -16,7 +15,27 @@ export default function About() {
       <div className="about-content">
         <div className="about-left">
           <div className="flower-icon">
-            <LuAperture size={80} strokeWidth={1} color="#000000" />
+            <svg
+              width="120"
+              height="120"
+              viewBox="0 0 120 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g transform="translate(60, 60)">
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                  <ellipse
+                    key={i}
+                    cx="0"
+                    cy="-25"
+                    rx="8"
+                    ry="28"
+                    fill="#000000"
+                    transform={`rotate(${i * 45})`}
+                  />
+                ))}
+              </g>
+            </svg>
           </div>
         </div>
 
@@ -28,8 +47,10 @@ export default function About() {
             only in exit interviews.
           </p>
 
+
+
           <button className="about-btn">
-            How It Works <LuArrowRight className="icon" />
+            How It Works <span className="icon">→</span>
           </button>
         </div>
       </div>
