@@ -237,8 +237,14 @@
   font-family: 'Marcellus', serif;
   font-size: 15vw;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(84, 84, 84, 0.477);
   white-space: nowrap;
   pointer-events: none;
   z-index: 1;
+}
+@media screen and (max-width: 768px) {
+  .footer-watermark {
+    // font-size: 20vw;
+    padding-bottom: 180px;
+  }
 }

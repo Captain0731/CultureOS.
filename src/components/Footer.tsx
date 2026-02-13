@@ -83,7 +83,7 @@ export default function Footer() {
 
       {/* Visual Background Text */}
       <div className="footer-watermark">
-        CULTURE OS
+        Culture OS
       </div>
     </footer>
   );
