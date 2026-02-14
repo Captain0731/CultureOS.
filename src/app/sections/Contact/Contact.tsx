@@ -56,12 +56,12 @@ export default function ContactPage() {
             <div className="contact-container">
 
                 {/* LEFT SIDE CONTENT */}
-                <div className="contact-left">
+                <div className="contact-left" data-anim="fade-up">
 
                     <h4 className="contact-subtitle">Liko Studio</h4>
-                    <h1 className="contact-title">Get in touch</h1>
+                    <h1 className="contact-title" data-anim="split-lines">Get in touch</h1>
 
-                    <div className="message-box">
+                    <div className="message-box" data-anim="fade-up">
                         <h3>SEND A MESSAGE</h3>
                         <p>CONTACT US</p>
                         <p>+1 234 567 890</p>
@@ -69,7 +69,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* Social Icons */}
-                    <div className="social-bar">
+                    <div className="social-bar" data-anim="stagger-children">
                         <h3>Follow Us</h3>
                         <a href="#" aria-label="LinkedIn"><FaLinkedinIn size={20} /></a>
                         <a href="#" aria-label="Twitter"><FaXTwitter size={20} /></a>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* RIGHT SIDE FORM */}
-                <form className="contact-form" onSubmit={handleSubmit}>
+                <form className="contact-form" onSubmit={handleSubmit} data-anim="fade-up">
                     <label>Name</label>
                     <input
                         type="text"

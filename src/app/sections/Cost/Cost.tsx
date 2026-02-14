@@ -6,18 +6,15 @@ export default function Cost() {
     <section className="cost-container">
 
       {/* LABEL */}
-      <p className="top-label">( THE REAL COST )</p>
+      <p className="top-label" data-anim="fade-up">( THE REAL COST )</p>
 
       {/* MAIN HEADING */}
-      <h1 className="cost-heading">
-        The damage shows
-        <span className="heading-highlight"> long before</span>
-        <br />
-        the resignations do.
+      <h1 className="cost-heading" data-anim="split-lines">
+        The damage shows long before the resignations do.
       </h1>
 
       {/* COST GRID - Problems List */}
-      <div className="cost-grid">
+      <div className="cost-grid" data-anim="stagger-children">
 
         <div className="cost-item">
           <LuTriangle className="cost-bullet" size={18} />
@@ -50,17 +47,17 @@ export default function Cost() {
       </div>
 
       {/* DIVIDER */}
-      <div className="divider-wrapper">
+      <div className="divider-wrapper" data-anim="fade-in">
         <div className="divider"></div>
       </div>
 
       {/* FINAL SECTION */}
-      <div className="final-section">
+      <div className="final-section" data-anim="fade-up">
         <p className="final-intro">
           The most dangerous phrase in a startup?
         </p>
 
-        <div className="final-quote-wrapper">
+        <div className="final-quote-wrapper" data-anim="scale-in">
           {/* <div className="quote-decoration left"></div> */}
           <p className="final-quote">
             "Why didn't anyone tell me earlier?"

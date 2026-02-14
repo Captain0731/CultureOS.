@@ -1,5 +1,6 @@
 import "./globals.scss";
 import Preloader from "@/components/Preloader/Preloader";
+import ScrollToTop from "@/components/ScrollToTop";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <Preloader />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

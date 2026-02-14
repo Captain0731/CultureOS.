@@ -15,6 +15,8 @@ const Preloader = () => {
 
         const timerRemove = setTimeout(() => {
             setLoading(false);
+            // Signal to hero animation that preloader is done
+            window.dispatchEvent(new Event("preloaderComplete"));
         }, 5500);
 
         return () => {

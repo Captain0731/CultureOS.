@@ -7,12 +7,12 @@ import Story from "./sections/Story/Story";
 import Solution from "./sections/Solution/Solution";
 import Contact from "./sections/Contact/Contact";
 import Footer from "../components/Footer";
-
-
+import SectionAnimator from "../components/SectionAnimator";
 
 export default function Home() {
   return (
     <main>
+      <SectionAnimator />
       <Navbar />
       <section id="home">
         <Hero />

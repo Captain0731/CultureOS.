@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaXTwitter, FaFacebookF, FaInstagram } from "react-icons/fa6";
+import gsap from "gsap";
 import "../styles/navbar.scss";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
 
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -22,6 +26,68 @@ export default function Navbar() {
     };
   }, []);
 
+  // GSAP navbar load animation — after preloader
+  useEffect(() => {
+    if (!navRef.current || !linksRef.current) return;
+
+    const logo = navRef.current.querySelector(".navbar-logo");
+    const links = linksRef.current.querySelectorAll(".navbar-link");
+    const socials = navRef.current.querySelectorAll(".social-link");
+
+    // Set initial hidden state
+    gsap.set(navRef.current, { y: -30, opacity: 0 });
+    gsap.set(links, { y: -20, opacity: 0, filter: "blur(4px)" });
+    gsap.set(socials, { y: -15, opacity: 0 });
+
+    const playNavAnim = () => {
+      const tl = gsap.timeline();
+
+      // Navbar container slides in
+      tl.to(navRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+      });
+
+      // Stagger menu links
+      tl.to(
+        links,
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.8,
+          ease: "power4.out",
+          stagger: 0.06,
+        },
+        "-=0.5"
+      );
+
+      // Social icons
+      tl.to(
+        socials,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power4.out",
+          stagger: 0.08,
+        },
+        "-=0.4"
+      );
+    };
+
+    window.addEventListener("preloaderComplete", playNavAnim);
+    const fallback = setTimeout(playNavAnim, 7000);
+
+    return () => {
+      window.removeEventListener("preloaderComplete", playNavAnim);
+      clearTimeout(fallback);
+    };
+  }, []);
+
+  // Body scroll lock for mobile menu
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -42,7 +108,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+    <nav ref={navRef} className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         {/* Logo */}
         <a href="#home" className="navbar-logo" onClick={(e) => {
@@ -65,11 +131,8 @@ export default function Navbar() {
 
         {/* Navigation Menu & Social Icons Wrapper */}
         <div className={`navbar-right ${isMobileMenuOpen ? "mobile-open" : ""}`}>
-          {/* Close button for mobile */}
-
-
           {/* Navigation Menu */}
-          <div className="navbar-menu">
+          <div className="navbar-menu" ref={linksRef}>
             <a href="#home" className="navbar-link" onClick={(e) => {
               e.preventDefault();
               scrollToSection("home");

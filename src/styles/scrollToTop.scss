@@ -1,0 +1,70 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 50px;
+    height: 50px;
+    background: rgba(12, 12, 12, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    color: #fff;
+    opacity: 0;
+    transform: scale(0);
+    transition: background 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    /* Progress ring container */
+    .progress-ring {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+    }
+
+    .progress-ring__bg {
+        stroke: rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-ring__circle {
+        stroke: rgba(255, 255, 255, 0.7);
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.15s ease;
+    }
+
+    /* Arrow icon */
+    .arrow-icon {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.12);
+
+        .arrow-icon {
+            transform: translateY(-3px);
+        }
+
+        .progress-ring__circle {
+            stroke: #fff;
+        }
+    }
+
+    &:active {
+        transform: scale(0.92) !important;
+    }
+
+    @media (max-width: 768px) {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}

@@ -3,18 +3,18 @@ import "../../../styles/about.scss";
 export default function About() {
   return (
     <section className="about-section">
-      <p className="top-label">( WHAT CULTUREOS DOES )</p>
+      <p className="top-label" data-anim="fade-up">( WHAT CULTUREOS DOES )</p>
 
 
-      <h1 className="about-title">
-        We show you the signals your team won’t say out loud.
+      <h1 className="about-title" data-anim="split-lines">
+        We show you the signals your team won't say out loud.
 
         {/* <span className="fade-last">ns</span> */}
       </h1>
 
-      <div className="about-content">
+      <div className="about-content" data-anim="stagger-children">
         <div className="about-left">
-          <div className="flower-icon">
+          <div className="flower-icon" data-anim="scale-in">
             <svg
               width="120"
               height="120"
@@ -40,7 +40,7 @@ export default function About() {
         </div>
 
         <div className="about-right">
-          <p>
+          <p data-anim="fade-up">
             CultureOS is a culture-intelligence system for modern startups.
             We surface the early signs of disengagement, burnout, misalignment,
             and management friction — the things that normally appear
@@ -49,7 +49,7 @@ export default function About() {
 
 
 
-          <button className="about-btn">
+          <button className="about-btn" data-anim="fade-up">
             How It Works <span className="icon">→</span>
           </button>
         </div>

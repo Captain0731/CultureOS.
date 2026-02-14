@@ -46,7 +46,7 @@
   font-size: clamp(3rem, 6vw, 7rem);
   line-height: 1.1;
   font-weight: 400;
-  color: #0a0a0a;
+  color: #111111;
   margin: 0;
   padding: 0;
 
@@ -61,6 +61,28 @@
   @media (max-width: 480px) {
     font-size: 2.5rem;
   }
+}
+
+/* Character-level animation system */
+.title-line {
+  display: block;
+}
+
+.char-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.char {
+  display: inline-block;
+  will-change: transform, filter, opacity;
+}
+
+/* Subtitle and button initial hidden state (GSAP sets these) */
+.d-sub,
+.d-button {
+  will-change: transform, opacity, filter;
 }
 
 /* Spaced subtitle text */
@@ -86,7 +108,7 @@
   z-index: 1;
   margin-top: 45px;
   padding: 16px 42px;
-  background: #0a0a0a;
+  background: #111111;
   color: #fff;
   border: none;
   border-radius: 50px;

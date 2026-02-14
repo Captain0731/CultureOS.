@@ -6,10 +6,10 @@ export default function Story() {
     <section className="story-container">
 
       {/* LABEL */}
-      <p className="top-label">( A FOUNDER MOMENT )</p>
+      <p className="top-label" data-anim="fade-up">( A FOUNDER MOMENT )</p>
 
       {/* NARRATIVE INTRO */}
-      <div className="story-intro">
+      <div className="story-intro" data-anim="stagger-children">
         <div className="intro-line">
           <span className="intro-number">42</span>
           <span className="intro-text">people.</span>
@@ -23,12 +23,12 @@ export default function Story() {
       </div>
 
       {/* REVELATION */}
-      <div className="revelation-section">
+      <div className="revelation-section" data-anim="fade-up">
         <h2 className="revelation-heading">CultureOS showed the truth:</h2>
       </div>
 
       {/* INSIGHTS GRID */}
-      <div className="insights-grid">
+      <div className="insights-grid" data-anim="stagger-children">
 
         <div className="insight-card">
           <div className="insight-icon">
@@ -66,12 +66,12 @@ export default function Story() {
       </div>
 
       {/* OUTCOME SECTION */}
-      <div className="outcome-section">
+      <div className="outcome-section" data-anim="fade-up">
         <div className="outcome-content">
           <p className="outcome-action">
             They stepped in early.
           </p>
-          <div className="outcome-results">
+          <div className="outcome-results" data-anim="stagger-children">
             <span className="result-item">No drama.</span>
             <span className="result-divider">•</span>
             <span className="result-item">No crisis.</span>
@@ -82,12 +82,12 @@ export default function Story() {
       </div>
 
       {/* DIVIDER */}
-      <div className="divider-wrapper">
+      <div className="divider-wrapper" data-anim="fade-in">
         <div className="divider"></div>
       </div>
 
       {/* FINAL MESSAGE */}
-      <div className="final-message">
+      <div className="final-message" data-anim="fade-up">
         <p className="final-text">That's the difference</p>
         <p className="final-emphasis">visibility creates.</p>
       </div>

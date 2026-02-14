@@ -1,29 +1,111 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { FaXTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
-import { LuArrowRight } from "react-icons/lu";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/footer.scss";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const footerRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // GSAP footer scroll animations
+  useEffect(() => {
+    if (!footerRef.current) return;
+
+    const grid = footerRef.current.querySelector(".footer-grid");
+    const cols = footerRef.current.querySelectorAll(".footer-col");
+    const bottom = footerRef.current.querySelector(".footer-bottom");
+    const marquee = footerRef.current.querySelector(".footer-marquee");
+
+    // Grid columns stagger
+    if (cols.length) {
+      gsap.set(cols, { y: 40, opacity: 0, filter: "blur(4px)" });
+      gsap.to(cols, {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Bottom bar
+    if (bottom) {
+      gsap.set(bottom, { y: 20, opacity: 0 });
+      gsap.to(bottom, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: bottom,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Marquee
+    if (marquee) {
+      gsap.set(marquee, { opacity: 0 });
+      gsap.to(marquee, {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: marquee,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
   return (
-    <footer className="footer">
+    <footer className="footer" ref={footerRef}>
       <div className="footer-container">
-        {/* Footer Top - CTA Section */}
-        {/* <div className="footer-cta">
-          <h2 className="cta-title">Transform your <span>Workplace</span></h2>
-          <button className="cta-button" onClick={() => scrollToSection('contact')}>
-            Get Started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <LuArrowRight />
-            </svg>
-          </button>
-        </div> */}
+
+        {/* Infinite Marquee */}
+        <div className="footer-marquee">
+          <div className="marquee-track">
+            <span className="marquee-text">Culture OS</span>
+            <span className="marquee-dot">●</span>
+            <span className="marquee-text">Build Culture</span>
+            <span className="marquee-dot">●</span>
+            <span className="marquee-text">Real Visibility</span>
+            <span className="marquee-dot">●</span>
+            <span className="marquee-text">Culture OS</span>
+            <span className="marquee-dot">●</span>
+            <span className="marquee-text">Build Culture</span>
+            <span className="marquee-dot">●</span>
+            <span className="marquee-text">Real Visibility</span>
+            <span className="marquee-dot">●</span>
+          </div>
+        </div>
 
         <div className="footer-grid">
           {/* Column 1 - Brand */}
@@ -81,10 +163,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Visual Background Text */}
-      <div className="footer-watermark">
-        Culture OS
-      </div>
+
     </footer>
   );
 }

@@ -5,14 +5,14 @@ export default function Problem() {
     <section className="problem-container">
 
       {/* LABEL */}
-      <p className="top-label">( THE PROBLEM )</p>
+      <p className="top-label" data-anim="fade-up">( THE PROBLEM )</p>
 
 
       {/* MAIN CONTENT WRAPPER */}
       <div className="problem-content">
 
         {/* HEADING SECTION */}
-        <div className="heading-section">
+        <div className="heading-section" data-anim="fade-up">
           <h1 className="problem-heading">
             Culture doesn't collapse
             <span className="heading-highlight"> overnight.</span>
@@ -23,12 +23,12 @@ export default function Problem() {
         </div>
 
         {/* VISUAL DIVIDER WITH GRADIENT */}
-        <div className="divider-wrapper">
+        <div className="divider-wrapper" data-anim="fade-in">
           <div className="divider"></div>
         </div>
 
         {/* STAGES GRID - Redesigned as cards */}
-        <div className="problem-stages">
+        <div className="problem-stages" data-anim="stagger-children">
 
           <div className="stage-card stage-1">
             <div className="stage-number">01</div>
@@ -69,17 +69,17 @@ export default function Problem() {
         </div>
 
         {/* VISUAL DIVIDER */}
-        <div className="divider-wrapper">
+        <div className="divider-wrapper" data-anim="fade-in">
           <div className="divider"></div>
         </div>
 
         {/* ENDING SECTION - Redesigned */}
-        <div className="ending-section">
+        <div className="ending-section" data-anim="fade-up">
           <p className="ending-text">
             And then one day — you hear the words you never expected:
           </p>
 
-          <div className="quote-wrapper">
+          <div className="quote-wrapper" data-anim="scale-in">
             <div className="quote-mark">"</div>
             <p className="ending-quote">
               I've decided to move on.

@@ -1,14 +1,16 @@
 import { LuArrowRight } from "react-icons/lu";
 import "../../../styles/hero.scss";
+import HeroTextReveal from "../../../components/HeroTextReveal";
 
 export default function Hero() {
   return (
     <section className="d-hero">
       <div className="d-blob"></div>
 
-      <h1 className="d-title">
-        Culture doesn’t break loudly. <br /> It fades quietly.
-      </h1>
+      <HeroTextReveal
+        line1="Culture doesn't break loudly."
+        line2="It fades quietly."
+      />
 
       <p className="d-sub">
         EARLY SIGNALS • TEAM INSIGHTS • CULTURE HEALTH • REAL VISIBILITY
