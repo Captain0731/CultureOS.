@@ -1,28 +1,30 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.scss";
 import Preloader from "@/components/Preloader/Preloader";
 import ScrollToTop from "@/components/ScrollToTop";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Culture OS.",
-  description: "Premium website ",
-  icons: {
-    icon: "/assets/images/ikj.png",
-  },
+    title: "Culture OS.",
+    description: "Premium website ",
+    icons: {
+        icon: "/assets/images/ikj.png",
+    },
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body suppressHydrationWarning={true}>
-        <Preloader />
-        {children}
-        <ScrollToTop />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body suppressHydrationWarning={true}>
+                <Preloader />
+                {children}
+                <ScrollToTop />
+                <SpeedInsights />
+            </body>
+        </html>
+    );
 }

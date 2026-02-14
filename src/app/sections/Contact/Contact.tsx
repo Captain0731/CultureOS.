@@ -58,7 +58,7 @@ export default function ContactPage() {
                 {/* LEFT SIDE CONTENT */}
                 <div className="contact-left" data-anim="fade-up">
 
-                    <h4 className="contact-subtitle">Liko Studio</h4>
+                    <p className="top-label" data-anim="fade-up">( Connect With Us )</p>
                     <h1 className="contact-title" data-anim="split-lines">Get in touch</h1>
 
                     <div className="message-box" data-anim="fade-up">

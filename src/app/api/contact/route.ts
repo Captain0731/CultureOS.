@@ -5,62 +5,62 @@ import { Resend } from "resend";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
-  try {
-    // Check if env variables are set
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      return NextResponse.json(
-        { error: "Server configuration error" },
-        { status: 500 }
-      );
-    }
-
-    // Initialize clients inside the function (runtime only)
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const body = await request.json();
-    const { name, email, phone, subject, message } = body;
-
-    // Validate required fields
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Name, email, and message are required" },
-        { status: 400 }
-      );
-    }
-
-    // Save to Supabase database
-    const { data, error: dbError } = await supabase
-      .from("contacts")
-      .insert([
-        {
-          name,
-          email,
-          phone: phone || null,
-          subject: subject || null,
-          message,
-        },
-      ])
-      .select();
-
-    if (dbError) {
-      console.error("Database error:", dbError);
-      return NextResponse.json(
-        { error: `Database error: ${dbError.message}` },
-        { status: 500 }
-      );
-    }
-
-    // Send email notification using Resend
     try {
-      await resend.emails.send({
-        from: "Culture OS <onboarding@resend.dev>", // Update with your verified domain
-        to: process.env.NOTIFICATION_EMAIL!, // Your email to receive notifications
-        subject: `New Contact Form: ${subject || "No Subject"}`,
-        html: `
+        // Check if env variables are set
+        if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+            return NextResponse.json(
+                { error: "Server configuration error" },
+                { status: 500 }
+            );
+        }
+
+        // Initialize clients inside the function (runtime only)
+        const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL,
+            process.env.SUPABASE_SERVICE_ROLE_KEY
+        );
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
+        const body = await request.json();
+        const { name, email, phone, subject, message } = body;
+
+        // Validate required fields
+        if (!name || !email || !message) {
+            return NextResponse.json(
+                { error: "Name, email, and message are required" },
+                { status: 400 }
+            );
+        }
+
+        // Save to Supabase database
+        const { data, error: dbError } = await supabase
+            .from("contacts")
+            .insert([
+                {
+                    name,
+                    email,
+                    phone: phone || null,
+                    subject: subject || null,
+                    message,
+                },
+            ])
+            .select();
+
+        if (dbError) {
+            console.error("Database error:", dbError);
+            return NextResponse.json(
+                { error: `Database error: ${dbError.message}` },
+                { status: 500 }
+            );
+        }
+
+        // Send email notification using Resend
+        try {
+            await resend.emails.send({
+                from: "Culture OS <onboarding@resend.dev>", // Update with your verified domain
+                to: process.env.NOTIFICATION_EMAIL!, // Your email to receive notifications
+                subject: `New Contact Form: ${subject || "No Subject"}`,
+                html: `
           <!DOCTYPE html>
           <html>
           <head>
@@ -116,21 +116,16 @@ export async function POST(request: NextRequest) {
                               <p style="margin: 0; font-size: 16px; color: #000000; font-weight: 500;">${subject || "Not provided"}</p>
                             </td>
                           </tr>
+                          <tr><td style="height: 12px;"></td></tr>
+                          <tr>
+                            <td style="padding: 16px 20px; background-color: #fafafa; border-radius: 12px;">
+                              <p style="margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888888; font-weight: 600;">Message</p>
+                              <div style="padding: 20px; background-color: #fafafa; border-radius: 12px; border-left: 4px solid #000000;">
+                                <p style="margin: 0; font-size: 15px; color: #333333; line-height: 1.6;">${message}</p>
+                              </div>
+                            </td>
+                          </tr>
                         </table>
-                        
-                        <!-- Message Box -->
-                        <div style="margin-top: 24px;">
-                          <p style="margin: 0 0 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888888; font-weight: 600;">Message</p>
-                          <div style="padding: 20px; background-color: #fafafa; border-radius: 12px; border-left: 4px solid #000000;">
-                            <p style="margin: 0; font-size: 15px; color: #333333; line-height: 1.6;">${message}</p>
-                          </div>
-                        </div>
-                        
-                        <!-- Reply Button -->
-                        <div style="margin-top: 32px; text-align: center;">
-                          <a href="mailto:${email}" style="display: inline-block; padding: 14px 32px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px;">Reply to ${name}</a>
-                        </div>
-                        
                       </td>
                     </tr>
                     
@@ -140,7 +135,6 @@ export async function POST(request: NextRequest) {
                         <p style="margin: 0; font-size: 13px; color: #888888;">This message was sent from your Culture OS website contact form.</p>
                       </td>
                     </tr>
-                    
                   </table>
                 </td>
               </tr>
@@ -148,21 +142,21 @@ export async function POST(request: NextRequest) {
           </body>
           </html>
         `,
-      });
-    } catch (emailError) {
-      // Log email error but don't fail the request
-      console.error("Email error:", emailError);
-    }
+            });
+        } catch (emailError) {
+            // Log email error but don't fail the request
+            console.error("Email error:", emailError);
+        }
 
-    return NextResponse.json(
-      { success: true, message: "Message sent successfully!" },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("Server error:", error);
-    return NextResponse.json(
-      { error: "Something went wrong" },
-      { status: 500 }
-    );
-  }
+        return NextResponse.json(
+            { success: true, message: "Message sent successfully!" },
+            { status: 200 }
+        );
+    } catch (error) {
+        console.error("Server error:", error);
+        return NextResponse.json(
+            { error: "Something went wrong" },
+            { status: 500 }
+        );
+    }
 }

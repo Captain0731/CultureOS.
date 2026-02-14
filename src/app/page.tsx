@@ -10,34 +10,32 @@ import Footer from "../components/Footer";
 import SectionAnimator from "../components/SectionAnimator";
 
 export default function Home() {
-  return (
-    <main>
-      <SectionAnimator />
-      <Navbar />
-      <section id="home">
-        <Hero />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="problem">
-        <Problem />
-      </section>
-      <section id="cost">
-        <Cost />
-      </section>
-      <section id="story">
-        <Story />
-      </section>
-      <section id="solution">
-        <Solution />
-      </section>
-      <section id="contact">
-        <Contact />
-      </section>
-      <section id="footer">
-        <Footer />
-      </section>
-    </main>
-  );
+    return (
+        <main>
+            <SectionAnimator />
+            <Navbar />
+            <section id="home">
+                <Hero />
+            </section>
+            <section id="about">
+                <About />
+            </section>
+            <section id="problem">
+                <Problem />
+            </section>
+            <section id="cost">
+                <Cost />
+            </section>
+            <section id="story">
+                <Story />
+            </section>
+            <section id="solution">
+                <Solution />
+            </section>
+            <section id="contact">
+                <Contact />
+            </section>
+            <Footer />
+        </main>
+    );
 }

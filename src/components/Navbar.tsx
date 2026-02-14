@@ -30,7 +30,6 @@ export default function Navbar() {
   useEffect(() => {
     if (!navRef.current || !linksRef.current) return;
 
-    const logo = navRef.current.querySelector(".navbar-logo");
     const links = linksRef.current.querySelectorAll(".navbar-link");
     const socials = navRef.current.querySelectorAll(".social-link");
 
