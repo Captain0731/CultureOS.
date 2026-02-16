@@ -49,6 +49,8 @@
   color: #111111;
   margin: 0;
   padding: 0;
+  /* improve text balance */
+  text-wrap: balance;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -63,6 +65,12 @@
     font-size: 1.75rem;
     line-height: 1.3;
   }
+}
+
+/* Utility to keep phrases together */
+.no-break {
+  white-space: nowrap;
+  display: inline-block;
 }
 
 /* Character-level animation system */

@@ -13,7 +13,10 @@ export default function Hero() {
       />
 
       <p className="d-sub">
-        EARLY SIGNALS • TEAM INSIGHTS • CULTURE HEALTH • REAL VISIBILITY
+        <span className="no-break">EARLY SIGNALS</span> •{" "}
+        <span className="no-break">TEAM INSIGHTS</span> •{" "}
+        <span className="no-break">CULTURE HEALTH</span> •{" "}
+        <span className="no-break">REAL VISIBILITY</span>
       </p>
 
       <button className="d-button">
