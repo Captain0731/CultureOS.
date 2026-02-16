@@ -5,11 +5,9 @@
   position: relative;
   text-align: center;
   padding: 0;
-  padding-top: 80px; // Increased for better clearance
+  padding-top: 80px;
   overflow: hidden;
-  /* Removed fixed height 100vh for body/html to ensure scroll events work properly */
   min-height: 100vh;
-  /* changed from height to min-height for the hero container itself */
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -17,7 +15,23 @@
   align-items: center;
 
   @media (max-width: 768px) {
-    padding-top: 60px;
+    padding-top: 110px; // Increased to clear navbar
+    padding-bottom: 60px;
+    justify-content: flex-start; // Start from top with padding
+  }
+}
+
+.d-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    margin-top: auto;
+    margin-bottom: auto;
   }
 }
 
