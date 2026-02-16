@@ -17,19 +17,37 @@ export default function HeroTextReveal({ line1, line2 }: HeroTextRevealProps) {
     useEffect(() => {
         if (!containerRef.current || !line1Ref.current || !line2Ref.current) return;
 
-        // Split each line into character spans
+        // Split line into words, then characters, to allow wrapping
         const splitIntoChars = (el: HTMLSpanElement, text: string) => {
             el.innerHTML = "";
-            text.split("").forEach((char) => {
-                const wrapper = document.createElement("span");
-                wrapper.className = "char-wrap";
+            const words = text.split(" ");
 
-                const charSpan = document.createElement("span");
-                charSpan.className = "char";
-                charSpan.textContent = char === " " ? "\u00A0" : char;
+            words.forEach((word, i) => {
+                const wordSpan = document.createElement("span");
+                wordSpan.style.display = "inline-block";
+                wordSpan.style.whiteSpace = "nowrap";
+                wordSpan.style.wordBreak = "keep-all"; // Extra safeguard
+                wordSpan.className = "word"; // Helper class
 
-                wrapper.appendChild(charSpan);
-                el.appendChild(wrapper);
+                word.split("").forEach((char) => {
+                    const wrapper = document.createElement("span");
+                    wrapper.className = "char-wrap";
+
+                    const charSpan = document.createElement("span");
+                    charSpan.className = "char";
+                    charSpan.textContent = char;
+
+                    wrapper.appendChild(charSpan);
+                    wordSpan.appendChild(wrapper);
+                });
+
+                el.appendChild(wordSpan);
+
+                // Add space after word if not last
+                if (i < words.length - 1) {
+                    const space = document.createTextNode(" ");
+                    el.appendChild(space);
+                }
             });
         };
 
