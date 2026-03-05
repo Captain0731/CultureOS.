@@ -32,26 +32,29 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Save to Supabase database
-        const { data, error: dbError } = await supabase
-            .from("contacts")
-            .insert([
-                {
-                    name,
-                    email,
-                    phone: phone || null,
-                    subject: subject || null,
-                    message,
-                },
-            ])
-            .select();
+        // Save to Supabase database (best-effort — do not fail request on network error)
+        let dbSaved = false;
+        try {
+            const { error: dbError } = await supabase
+                .from("contacts")
+                .insert([
+                    {
+                        name,
+                        email,
+                        phone: phone || null,
+                        subject: subject || null,
+                        message,
+                    },
+                ]);
 
-        if (dbError) {
-            console.error("Database error:", dbError);
-            return NextResponse.json(
-                { error: `Database error: ${dbError.message}` },
-                { status: 500 }
-            );
+            if (dbError) {
+                console.error("Supabase database error:", dbError);
+            } else {
+                dbSaved = true;
+            }
+        } catch (dbException) {
+            // This typically surfaces as "TypeError: fetch failed" / ConnectTimeoutError
+            console.error("Supabase connection error:", dbException);
         }
 
         // Send email notification using Resend
@@ -149,7 +152,13 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json(
-            { success: true, message: "Message sent successfully!" },
+            {
+                success: true,
+                message: "Message sent successfully!",
+                meta: {
+                    savedToDatabase: dbSaved,
+                },
+            },
             { status: 200 }
         );
     } catch (error) {
